@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="only light">
+<title>Contacto — Otamendi & Jofré | Estudio Jurídico La Plata</title>
+<link rel="icon" href="./favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+html { color-scheme: only light; scroll-behavior: smooth; scroll-padding-top: 90px; }
+:root {
+  --slate:      #272e40;
+  --slate-mid:  #3a4259;
+  --slate-dark: #1d2333;
+  --camel:      #a59178;
+  --camel-dim:  rgba(165,145,120,.22);
+  --cream:      #fffdfb;
+  --cream-2:    #f5f0ea;
+  --cream-3:    #ede6dd;
+  --gray:       #6b7280;
+  --gray-light: #9ca3af;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+img { max-width: 100%; height: auto; display: block; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--slate); overflow-x: hidden; line-height: 1.85; }
+
+.has-grain { position: relative; }
+.has-grain::before { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"); }
+.has-grain > * { position: relative; z-index: 1; }
+
+.rv-l  { opacity: 0; transform: translateX(-28px); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); }
+.rv-r  { opacity: 0; transform: translateX(28px);  transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); }
+.rv-u  { opacity: 0; transform: translateY(22px);  transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+.rv-l.in, .rv-r.in, .rv-u.in { opacity: 1; transform: none; }
+
+.eyebrow { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--camel); display: block; margin-bottom: .9rem; }
+.rule { display: block; width: 52px; height: 1px; background: var(--camel); margin-bottom: 1.6rem; }
+h2.serif { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3.8vw, 50px); font-weight: 600; line-height: 1.08; color: var(--slate); }
+h2.serif.on-dark { color: var(--cream); }
+
+.hbg { display: none; position: fixed; top: calc(45px - 11px); right: 1.5rem; z-index: 9998; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 6px; }
+.hbg span { display: block; width: 22px; height: 2px; background: var(--slate); transition: transform .28s, opacity .28s; }
+.hbg.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hbg.open span:nth-child(2) { opacity: 0; }
+.hbg.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+.hdr { position: fixed; inset: 0 0 auto; height: 90px; background: var(--cream); border-bottom: 1px solid var(--camel-dim); z-index: 900; transition: box-shadow .4s; }
+.hdr.shadow { box-shadow: 0 4px 20px rgba(39,46,64,.08); }
+.hdr-inner { max-width: 1380px; margin: 0 auto; padding: 0 3rem; height: 100%; display: grid; grid-template-columns: 200px 1fr 200px; align-items: center; }
+.hdr-logo { text-decoration: none; }
+.hdr-logo img { height: 60px; width: auto; }
+nav.desk-nav { justify-self: center; }
+.desk-nav ul { display: flex; gap: 2.6rem; list-style: none; }
+.desk-nav a { font-size: .78rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; text-decoration: none; color: var(--slate); position: relative; padding-bottom: 3px; transition: color .2s; }
+.desk-nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--camel); transition: width .25s ease; }
+.desk-nav a:hover::after, .desk-nav a.active::after { width: 100%; }
+.desk-nav a:hover, .desk-nav a.active { color: var(--camel); }
+
+.mnav-overlay { position: fixed; inset: 0; background: rgba(29,35,51,.45); z-index: 901; opacity: 0; pointer-events: none; transition: opacity .32s; }
+.mnav-overlay.open { opacity: 1; pointer-events: auto; }
+#mnav { position: fixed; top: 0; right: 0; width: min(80%, 300px); height: 100%; background: var(--cream); border-left: 1px solid var(--camel-dim); z-index: 902; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem; transform: translateX(100%); transition: transform .35s cubic-bezier(.4,0,.2,1); padding: 2.5rem 2rem; }
+#mnav.open { transform: translateX(0); }
+.mnav-logo-img { width: 192px; height: auto; }
+.mnav-rule { width: 40px; height: 1px; background: var(--camel); }
+#mnav a { font-size: .85rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--slate); transition: color .2s; }
+#mnav a:hover { color: var(--camel); }
+
+/* ── PAGE HERO ─────────────────────────────── */
+.pg-hero { background: var(--slate-dark); padding: calc(90px + 5rem) 3rem 5.5rem; position: relative; overflow: hidden; text-align: center; }
+.pg-hero::before { content: ''; position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80') center/cover no-repeat; filter: grayscale(100%); opacity: .05; }
+.pg-hero-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.pg-hero .eyebrow { color: rgba(165,145,120,.85); }
+.pg-hero .rule { margin: 0 auto 1.6rem; }
+.pg-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 5.5vw, 70px); font-weight: 400; line-height: 1.05; color: var(--cream); margin-bottom: 1.2rem; }
+.pg-hero h1 em { font-style: italic; color: var(--camel); }
+.pg-sub { font-size: .97rem; color: rgba(255,253,251,.62); line-height: 1.85; max-width: 580px; margin: 0 auto; }
+
+/* ── CONTACTO PRINCIPAL ─────────────────────────────── */
+#contacto-main { background: var(--cream); padding: 7rem 3rem; }
+.contacto-wrap { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: start; }
+
+/* Formulario */
+.c-form-col h2.serif { margin-bottom: .5rem; }
+.c-form-intro { font-size: .95rem; color: var(--gray); margin-top: .8rem; margin-bottom: 2.4rem; line-height: 1.8; }
+
+form { display: grid; gap: 1.2rem; }
+.f-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.field { display: flex; flex-direction: column; gap: .4rem; }
+.field label { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: .78rem 1rem;
+  border: 1.5px solid var(--cream-3);
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--slate);
+  outline: none; transition: border-color .2s;
+  appearance: none; -webkit-appearance: none;
+  border-radius: 0;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--camel); }
+.field textarea { resize: vertical; min-height: 130px; }
+.field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23a59178'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+.btn-submit { display: inline-flex; align-items: center; gap: .65rem; padding: .9rem 2.2rem; background: var(--slate); color: var(--cream); border: none; font-family: 'DM Sans', sans-serif; font-size: .76rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; cursor: pointer; transition: background .22s; width: fit-content; }
+.btn-submit:hover { background: var(--camel); }
+.form-success { display: none; padding: 1.2rem 1.4rem; background: var(--cream-2); border-left: 3px solid var(--camel); }
+.form-success p { font-size: .9rem; color: var(--slate); }
+
+/* Información de contacto */
+.c-info-col {}
+.c-info-col h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--slate); margin-bottom: 2rem; line-height: 1.1; }
+.c-info-items { list-style: none; display: grid; gap: 1.6rem; margin-bottom: 3rem; }
+.ci-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+.ci-icon { width: 44px; height: 44px; background: var(--slate); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ci-icon i { color: var(--camel); font-size: .95rem; }
+.ci-label { font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--camel); display: block; margin-bottom: .2rem; }
+.ci-value { font-size: .92rem; color: var(--slate); line-height: 1.6; }
+.ci-value a { color: var(--slate); text-decoration: none; transition: color .2s; }
+.ci-value a:hover { color: var(--camel); }
+
+.c-wa-btns { display: grid; gap: .8rem; margin-top: 1.2rem; }
+.c-wa-btn { display: flex; align-items: center; gap: .9rem; padding: .9rem 1.4rem; background: var(--cream-2); border: 1.5px solid var(--camel-dim); text-decoration: none; transition: border-color .22s, background .22s; }
+.c-wa-btn:hover { border-color: var(--camel); background: var(--cream-3); }
+.c-wa-btn .wb-icon { width: 38px; height: 38px; background: var(--slate); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.c-wa-btn .wb-icon i { color: var(--camel); font-size: .9rem; }
+.c-wa-btn .wb-info span { display: block; }
+.c-wa-btn .wb-name { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--slate); }
+.c-wa-btn .wb-num  { font-size: .82rem; color: var(--gray); }
+
+/* ── MAPA + INFO ADICIONAL ─────────────────────────────── */
+#mapa { background: var(--cream-2); padding: 0; }
+.map-wrap { display: grid; grid-template-columns: 1fr 480px; }
+.map-embed { min-height: 420px; }
+.map-embed iframe { width: 100%; height: 100%; border: 0; display: block; filter: grayscale(30%); }
+.map-aside { background: var(--slate-dark); padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; gap: 2.4rem; }
+.ma-block .eyebrow { color: rgba(165,145,120,.85); margin-bottom: .6rem; }
+.ma-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--cream); margin-bottom: .6rem; }
+.ma-block p, .ma-block a { font-size: .88rem; color: rgba(255,253,251,.55); line-height: 1.7; text-decoration: none; transition: color .2s; }
+.ma-block a:hover { color: var(--camel); }
+.ma-divider { height: 1px; background: rgba(165,145,120,.15); }
+
+/* ── FOOTER ─────────────────────────────── */
+footer { background: var(--slate-dark); border-top: 1px solid rgba(165,145,120,.1); padding: 5rem 3rem 2.5rem; }
+.footer-grid { max-width: 1280px; margin: 0 auto 3.5rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; }
+.f-brand img { width: 160px; height: auto; margin-bottom: 1.4rem; }
+.f-brand p   { font-size: .88rem; color: rgba(255,253,251,.5); line-height: 1.8; max-width: 280px; }
+.f-col h4 { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--camel); margin-bottom: 1.4rem; }
+.f-col ul { list-style: none; }
+.f-col li { margin-bottom: .7rem; }
+.f-col a  { font-size: .86rem; color: rgba(255,253,251,.55); text-decoration: none; transition: color .2s; }
+.f-col a:hover { color: var(--camel); }
+.f-info-row { display: flex; align-items: flex-start; gap: .7rem; font-size: .86rem; color: rgba(255,253,251,.55); margin-bottom: .7rem; }
+.f-info-row i { color: var(--camel); margin-top: .2rem; flex-shrink: 0; font-size: .85rem; }
+.f-info-row a { color: rgba(255,253,251,.55); text-decoration: none; transition: color .2s; }
+.f-info-row a:hover { color: var(--camel); }
+.footer-bottom { max-width: 1280px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(165,145,120,.18); text-align: center; font-size: .78rem; color: rgba(255,253,251,.35); }
+.footer-bottom a { color: rgba(255,253,251,.5); text-decoration: none; }
+.footer-bottom a:hover { color: var(--camel); }
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 1200px) {
+  .hdr-inner { padding: 0 2rem; }
+  .contacto-wrap { gap: 4.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .map-wrap { grid-template-columns: 1fr 380px; }
+}
+@media (max-width: 1024px) {
+  .contacto-wrap { grid-template-columns: 1fr; max-width: 680px; margin: 0 auto; }
+  .c-info-col { order: -1; }
+  .map-wrap { grid-template-columns: 1fr; }
+  .map-embed { min-height: 320px; }
+  .map-aside { padding: 3rem 2.5rem; }
+}
+@media (max-width: 768px) {
+  .rv-l, .rv-r { transform: translateY(22px); }
+  .hbg { display: flex; }
+  nav.desk-nav { display: none; }
+  .hdr-inner { grid-template-columns: 1fr; justify-items: center; padding: 0 1.5rem; }
+  .pg-hero { padding: calc(90px + 3rem) 1.5rem 3.5rem; }
+  #contacto-main { padding: 5rem 1.5rem; }
+  /* Formulario — eyebrow, línea y título */
+  .c-form-col { text-align: center; }
+  .c-form-col .rule { margin-left: auto; margin-right: auto; }
+  /* Párrafo antes del formulario */
+  .c-form-intro { text-align: center; }
+  /* Campos: label + input text + botón */
+  .field label { text-align: center; }
+  .field input, .field select, .field textarea { text-align: center; }
+  .btn-submit { width: 100%; justify-content: center; }
+  /* "Información de contacto" — eyebrow, línea y h3 */
+  .c-info-col { text-align: center; }
+  .c-info-col .rule { margin-left: auto; margin-right: auto; }
+  /* "O encontranos acá" — ícono arriba, texto abajo, ambos centrados */
+  .ci-item { flex-direction: column; align-items: center; text-align: center; }
+  /* WhatsApp directo — ícono arriba, texto abajo */
+  .c-wa-btn { flex-direction: column; align-items: center; text-align: center; }
+  .f-row-2 { grid-template-columns: 1fr; }
+  /* Mapa aside — Cómo llegar / Horarios / Zona de influencia */
+  .ma-block { text-align: center; }
+  .map-aside { padding: 3rem 1.5rem; }
+  footer { padding: 4rem 1.5rem 2rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+  .f-brand img { margin: 0 auto 1.4rem; }
+  .f-brand p   { max-width: 100%; }
+  .f-info-row  { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="mnav-overlay" id="overlay"></div>
+<button class="hbg" id="hbg" aria-label="Menú"><span></span><span></span><span></span></button>
+
+<header class="hdr" id="hdr">
+  <div class="hdr-inner">
+    <a href="index.html" class="hdr-logo">
+      <img src="./logo-navbar.png" alt="Otamendi & Jofré — Estudio Jurídico">
+    </a>
+    <nav class="desk-nav">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a href="areas.html">Áreas</a></li>
+        <li><a href="contacto.html" class="active">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<nav id="mnav" aria-hidden="true">
+  <img src="./logo.png" class="mnav-logo-img" alt="Otamendi & Jofré">
+  <div class="mnav-rule"></div>
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="equipo.html">Equipo</a>
+  <a href="areas.html">Áreas</a>
+  <a href="contacto.html">Contacto</a>
+</nav>
+
+<section class="pg-hero">
+  <div class="pg-hero-inner">
+    <span class="eyebrow">Estamos para Ayudarte</span>
+    <span class="rule"></span>
+    <h1>Ponete en<br><em>Contacto</em></h1>
+    <p class="pg-sub">Completá el formulario o escribinos directamente por WhatsApp. Respondemos a la brevedad para orientarte sobre tu caso.</p>
+  </div>
+</section>
+
+<section id="contacto-main" class="has-grain">
+  <div class="contacto-wrap">
+
+    <!-- FORMULARIO -->
+    <div class="c-form-col rv-l">
+      <span class="eyebrow">Escribinos</span>
+      <span class="rule"></span>
+      <h2 class="serif">Contanos tu Situación</h2>
+      <p class="c-form-intro">Describí brevemente tu consulta y te contactamos para orientarte. Todos los mensajes recibidos son leídos personalmente por los socios del estudio.</p>
+
+      <form id="contact-form" novalidate>
+        <div class="f-row-2">
+          <div class="field">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="(221) 000-0000">
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="field">
+          <label for="area">Área de consulta</label>
+          <select id="area" name="area">
+            <option value="">Seleccioná un área</option>
+            <option value="familia">Derecho de Familia</option>
+            <option value="civil">Derecho Civil</option>
+            <option value="laboral">Derecho Laboral</option>
+            <option value="penal">Derecho Penal</option>
+            <option value="comercial">Derecho Comercial</option>
+            <option value="societario">Derecho Societario</option>
+            <option value="contratos">Contratos</option>
+            <option value="marcas">Registración de Marcas</option>
+            <option value="multas">Multas de Tránsito</option>
+            <option value="otro">Otro / No estoy seguro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mensaje">Descripción del caso</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Contanos brevemente tu situación..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar Consulta <i class="fas fa-arrow-right"></i></button>
+      </form>
+
+      <div class="form-success" id="form-success">
+        <p><strong>¡Mensaje recibido!</strong> Te contactamos a la brevedad para orientarte sobre tu caso.</p>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="c-info-col rv-r">
+      <span class="eyebrow">Información de Contacto</span>
+      <span class="rule"></span>
+      <h3>O Encontranos Acá</h3>
+
+      <ul class="c-info-items">
+        <li class="ci-item">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <span class="ci-label">Dirección</span>
+            <span class="ci-value">Calle 10 entre 57 y 58 N° 1240<br>La Plata, Buenos Aires</span>
+          </div>
+        </li>
+        <li class="ci-item">
+          <div class="ci-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <span class="ci-label">Horario de Atención</span>
+            <span class="ci-value">Lunes a Viernes: 9 a 18 hs</span>
+          </div>
+        </li>
+        <li class="ci-item">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <span class="ci-label">Email</span>
+            <span class="ci-value"><a href="mailto:ojpestudiojuridico@gmail.com">ojpestudiojuridico@gmail.com</a></span>
+          </div>
+        </li>
+      </ul>
+
+      <span class="eyebrow">WhatsApp directo</span>
+      <div class="c-wa-btns">
+        <a href="https://wa.me/542216333921" target="_blank" class="c-wa-btn">
+          <div class="wb-icon"><i class="fas fa-comment"></i></div>
+          <div class="wb-info">
+            <span class="wb-name">Micaela Jofré</span>
+            <span class="wb-num">+54 9 221 633-3921</span>
+          </div>
+        </a>
+        <a href="https://wa.me/541158005390" target="_blank" class="c-wa-btn">
+          <div class="wb-icon"><i class="fas fa-comment"></i></div>
+          <div class="wb-info">
+            <span class="wb-name">Sebastián Otamendi</span>
+            <span class="wb-num">+54 11 5800-5390</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MAPA -->
+<div id="mapa">
+  <div class="map-wrap">
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.2!2d-57.9543!3d-34.9187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCalle+10+N%C2%B01240+La+Plata!5e0!3m2!1ses!2sar!4v1000000000000"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación del estudio en La Plata">
+      </iframe>
+    </div>
+    <div class="map-aside">
+      <div class="ma-block">
+        <span class="eyebrow">Cómo llegar</span>
+        <h4>Calle 10 N° 1240</h4>
+        <p>Entre calles 57 y 58. La Plata, Buenos Aires.</p>
+      </div>
+      <div class="ma-divider"></div>
+      <div class="ma-block">
+        <span class="eyebrow">Horarios</span>
+        <h4>Lunes a Viernes</h4>
+        <p>9:00 a 18:00 hs<br>También atendemos por WhatsApp fuera del horario de atención para urgencias.</p>
+      </div>
+      <div class="ma-divider"></div>
+      <div class="ma-block">
+        <span class="eyebrow">Zona de influencia</span>
+        <h4>La Plata y Gran Buenos Aires</h4>
+        <p>Atendemos presencialmente en La Plata y de forma remota a clientes de todo el país.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <img src="./logo-claro.png" alt="Otamendi & Jofré — Estudio Jurídico Integral">
+      <p>Estudio jurídico integral especializado en múltiples ramas del derecho. Acompañamiento personalizado y profesional en La Plata, Buenos Aires.</p>
+    </div>
+    <div class="f-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a href="areas.html">Áreas</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Áreas</h4>
+      <ul>
+        <li><a href="areas.html#familia">Familia</a></li>
+        <li><a href="areas.html#civil">Civil</a></li>
+        <li><a href="areas.html#laboral">Laboral</a></li>
+        <li><a href="areas.html#penal">Penal</a></li>
+        <li><a href="areas.html#societario">Societario</a></li>
+        <li><a href="areas.html#marcas">Marcas</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Contacto</h4>
+      <div class="f-info-row"><i class="fas fa-map-marker-alt"></i><span>Calle 10 entre 57 y 58 N° 1240<br>La Plata, Buenos Aires</span></div>
+      <div class="f-info-row"><i class="fas fa-clock"></i><span>Lun a Vie: 9 a 18 hs</span></div>
+      <div class="f-info-row"><i class="fab fa-whatsapp"></i><a href="https://wa.me/542216333921">+54 9 221 633-3921</a></div>
+      <div class="f-info-row"><i class="fas fa-envelope"></i><a href="mailto:ojpestudiojuridico@gmail.com">ojpestudiojuridico@gmail.com</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Otamendi & Jofré · Estudio Jurídico Integral |
+    Desarrollado por <a href="https://instagram.com/sageedev" target="_blank">@sageedev</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const hdr = document.getElementById('hdr');
+  const hbg = document.getElementById('hbg');
+  window.addEventListener('scroll', () => { hdr.classList.toggle('shadow', window.scrollY > 60); }, { passive: true });
+  const mnav = document.getElementById('mnav');
+  const overlay = document.getElementById('overlay');
+  function openNav()  { hbg.classList.add('open'); mnav.classList.add('open'); overlay.classList.add('open'); mnav.setAttribute('aria-hidden','false'); }
+  function closeNav() { hbg.classList.remove('open'); mnav.classList.remove('open'); overlay.classList.remove('open'); mnav.setAttribute('aria-hidden','true'); }
+  hbg.addEventListener('click', () => mnav.classList.contains('open') ? closeNav() : openNav());
+  overlay.addEventListener('click', closeNav);
+  mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  /* Reveal */
+  const rObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rObs.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.rv-l, .rv-r, .rv-u').forEach(el => rObs.observe(el));
+
+  /* Formulario — show success, redirect to WhatsApp */
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const nombre  = document.getElementById('nombre').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+    const area    = document.getElementById('area').value;
+    const areaLabel = area ? document.getElementById('area').options[document.getElementById('area').selectedIndex].text : 'Sin especificar';
+    if (!nombre || !mensaje) return;
+
+    const text = encodeURIComponent(
+      `Hola, soy ${nombre}.\n` +
+      `Área de consulta: ${areaLabel}\n\n` +
+      `${mensaje}`
+    );
+    form.style.display = 'none';
+    success.style.display = 'block';
+    setTimeout(() => {
+      window.open(`https://wa.me/542216333921?text=${text}`, '_blank');
+    }, 800);
+  });
+})();
+</script>
+</body>
+</html>
